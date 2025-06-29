@@ -1,77 +1,71 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Dashboard() {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Dashboard</Text>
-        <Text style={styles.subtitle}>Welcome back!</Text>
+    <ScrollView className="flex-1 bg-blue-50">
+      {/* Header */}
+      <View className="bg-blue-600 pt-12 pb-6 px-6">
+        <Text className="text-white text-2xl font-bold">Dashboard</Text>
+        <Text className="text-blue-100 text-sm mt-1">Welcome back!</Text>
       </View>
-      
-      <View style={styles.content}>
-        <View style={styles.testCard}>
-          <Text style={styles.testText}>hello test ajol</Text>
-          <Text style={styles.statusText}>Testing basic layout first</Text>
-        </View>
-        
-        <Text style={styles.debugText}>If you can see this, the component is working!</Text>
-      </View>
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f0f9ff', // light blue
-  },
-  header: {
-    backgroundColor: '#2563eb', // blue
-    paddingTop: 48,
-    paddingBottom: 24,
-    paddingHorizontal: 24,
-  },
-  title: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  subtitle: {
-    color: '#dbeafe', // light blue
-    fontSize: 14,
-    marginTop: 4,
-  },
-  content: {
-    padding: 24,
-  },
-  testCard: {
-    backgroundColor: 'white',
-    borderRadius: 8,
-    padding: 24,
-    marginBottom: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  testText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#1f2937',
-    textAlign: 'center',
-  },
-  statusText: {
-    fontSize: 14,
-    color: '#6b7280',
-    textAlign: 'center',
-    marginTop: 8,
-  },
-  debugText: {
-    fontSize: 16,
-    color: '#059669',
-    textAlign: 'center',
-    fontWeight: '600',
-  },
-}); 
+      {/* Main Content */}
+      <View className="p-6">
+        {/* Test Message */}
+        <View className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <Text className="text-3xl font-bold text-gray-800 text-center">
+            hello test ajol
+          </Text>
+          
+        </View>
+
+        {/* Stats Cards */}
+        <View className="flex-row justify-between mb-6">
+          <View className="bg-green-500 rounded-lg p-4 flex-1 mr-2">
+            <Text className="text-white text-lg font-semibold">Active</Text>
+            <Text className="text-white text-2xl font-bold">24</Text>
+          </View>
+          <View className="bg-purple-500 rounded-lg p-4 flex-1 ml-2">
+            <Text className="text-white text-lg font-semibold">Total</Text>
+            <Text className="text-white text-2xl font-bold">156</Text>
+          </View>
+        </View>
+
+        {/* Action Buttons */}
+        <View className="space-y-3">
+          <TouchableOpacity className="bg-blue-500 rounded-lg p-4">
+            <Text className="text-white text-center font-semibold text-lg">
+              Primary Action
+            </Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity className="bg-gray-200 rounded-lg p-4">
+            <Text className="text-gray-800 text-center font-semibold text-lg">
+              Secondary Action
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Info Section */}
+        <View className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <Text className="text-yellow-800 font-semibold mb-2">
+            Testing Tailwind Classes:
+          </Text>
+          <Text className="text-yellow-700 text-sm">
+            • Colors: bg-blue-600, text-white, bg-blue-50
+          </Text>
+          <Text className="text-yellow-700 text-sm">
+            • Spacing: p-6, mt-2, mb-6
+          </Text>
+          <Text className="text-yellow-700 text-sm">
+            • Layout: flex-row, justify-between, rounded-lg
+          </Text>
+          <Text className="text-yellow-700 text-sm">
+            • Typography: text-2xl, font-bold, text-center
+          </Text>
+        </View>
+      </View>
+    </ScrollView>
+  );
+} 
