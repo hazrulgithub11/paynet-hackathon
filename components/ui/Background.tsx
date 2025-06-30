@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ImageBackground, View } from 'react-native';
 
 interface BackgroundProps {
   className?: string;
@@ -7,8 +7,13 @@ interface BackgroundProps {
 
 export default function Background({ className = "" }: BackgroundProps) {
   return (
-    <View 
-      className={`absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-700 to-blue-500 ${className}`}
-    />
+    <ImageBackground
+      source={require('@/assets/images/back.jpg')}
+      className={`absolute inset-0 ${className}`}
+      resizeMode="cover"
+    >
+      {/* Optional overlay for better text readability */}
+      <View className="absolute inset-0 bg-black/20" />
+    </ImageBackground>
   );
 }

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+/* Enhanced styles for modern mobile menu */
+@layer components {
+  .interactive-menu-container {
+    @apply bg-gray-800 rounded-full;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .interactive-menu-item {
+    @apply flex-1 items-center py-3 px-2;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .interactive-menu-item-active {
+    @apply transform scale-105;
+  }
+  
+  .interactive-menu-icon {
+    @apply mb-1;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .interactive-menu-icon-active {
+    @apply transform -translate-y-1 scale-110;
+  }
+  
+  .interactive-menu-text {
+    @apply text-xs font-medium text-center;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .interactive-menu-line {
+    @apply mt-1 h-0.5 rounded-full;
+    transition: width 0.2s ease-in-out;
+  }
+} 
