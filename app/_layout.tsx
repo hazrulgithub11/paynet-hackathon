@@ -1,5 +1,14 @@
+import {
+    Poppins_300Light,
+    Poppins_400Regular,
+    Poppins_400Regular_Italic,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+    Poppins_800ExtraBold,
+    useFonts as usePoppinsFonts
+} from '@expo-google-fonts/poppins';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
@@ -9,11 +18,18 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  
+  const [fontsLoaded] = usePoppinsFonts({
+    PoppinsRegular: Poppins_400Regular,
+    PoppinsLight: Poppins_300Light,
+    PoppinsMedium: Poppins_500Medium,
+    PoppinsSemiBold: Poppins_600SemiBold,
+    PoppinsBold: Poppins_700Bold,
+    PoppinsExtraBold: Poppins_800ExtraBold,
+    PoppinsItalic: Poppins_400Regular_Italic,
   });
 
-  if (!loaded) {
+  if (!fontsLoaded) {
     // Async font loading only occurs in development.
     return null;
   }

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: 'PoppinsRegular', system-ui, sans-serif;
+  }
+}
+
 /* Enhanced styles for modern mobile menu */
 @layer components {
   .interactive-menu-container {
@@ -31,7 +37,7 @@
   }
   
   .interactive-menu-text {
-    @apply text-xs font-medium text-center;
+    @apply text-xs font-medium text-center font-medium;
     transition: all 0.2s ease-in-out;
   }
   
