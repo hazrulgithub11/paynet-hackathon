@@ -11,7 +11,7 @@ interface PaymentCardProps {
 export default function PaymentCard({ 
   accountName, 
   balance, 
-  backgroundColor = 'bg-blue-500' 
+  backgroundColor = 'rgba(59, 130, 246, 1)' // Blue equivalent to bg-blue-500
 }: PaymentCardProps) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
@@ -43,7 +43,10 @@ export default function PaymentCard({
         style={{ transform: [{ scale: scaleAnim }] }}
         className="mx-4 mb-4"
       >
-        <View className={`${backgroundColor} rounded-2xl p-6 shadow-lg`}>
+        <View 
+          className="rounded-2xl p-6 shadow-lg"
+          style={{ backgroundColor }}
+        >
           <View className="flex-row justify-between items-center">
             <View className="flex-1">
               <Text className="text-white text-lg font-semibold mb-1">
@@ -65,6 +68,30 @@ export default function PaymentCard({
           </View>
         </View>
       </Animated.View>
+    </TouchableOpacity>
+  );
+}
+
+export function PurpleButton({ title, onPress, className = "" }: {
+  title: string;
+  onPress: () => void;
+  className?: string;
+}) {
+  return (
+    <TouchableOpacity 
+      onPress={onPress}
+      className={`bg-yellow-400 px-6 py-3 rounded-full shadow-lg ${className}`}
+      style={{
+        shadowColor: '#fff345',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 8,
+      }}
+    >
+      <Text className="text-black font-semibold text-center text-base">
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 }

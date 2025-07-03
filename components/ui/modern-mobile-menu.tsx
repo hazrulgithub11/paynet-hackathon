@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { View, TouchableOpacity, Text, Animated, Dimensions } from 'react-native';
-import { BlurView } from 'expo-blur';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { BlurView } from 'expo-blur';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, Dimensions, TouchableOpacity, View } from 'react-native';
 
 type IconName = 'house.fill' | 'person.fill' | 'camera.fill' | 'dollarsign.circle.fill' | 'gearshape.fill';
 
@@ -96,9 +96,9 @@ const InteractiveMenu: React.FC<InteractiveMenuProps> = ({
         tint="dark"
         className="flex-row rounded-full mx-2 px-2 py-2 overflow-hidden"
         style={{
-          backgroundColor: 'rgba(31, 41, 55, 0.8)', // Semi-transparent dark background
+          backgroundColor: 'rgba(0,0,0,255)', // Semi-transparent dark background
           borderWidth: 1,
-          borderColor: 'rgba(255, 255, 255, 0.1)', // Subtle light border for glass effect
+          borderColor: 'rgba(255,255,241,255)', // Subtle light border for glass effect
           shadowColor: '#000',
           shadowOffset: {
             width: 0,
@@ -170,4 +170,4 @@ const InteractiveMenu: React.FC<InteractiveMenuProps> = ({
   );
 };
 
-export { InteractiveMenu }; 
+export { InteractiveMenu };

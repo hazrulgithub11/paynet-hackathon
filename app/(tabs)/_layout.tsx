@@ -1,14 +1,13 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
 import { Platform, View } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
+import Background from '@/components/ui/Background';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { InteractiveMenu } from '@/components/ui/modern-mobile-menu';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { InteractiveMenu } from '@/components/ui/modern-mobile-menu';
-import Background from '@/components/ui/Background';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -19,7 +18,6 @@ export default function TabLayout() {
       { label: 'Account', icon: 'person.fill' as const, screen: 'account' },
       { label: 'QR Code', icon: 'camera.fill' as const, screen: 'qr' },
       { label: 'Expenses', icon: 'dollarsign.circle.fill' as const, screen: 'expenses' },
-      { label: 'Settings', icon: 'gearshape.fill' as const, screen: 'settings' },
     ];
 
     return (
@@ -79,13 +77,6 @@ export default function TabLayout() {
         options={{
           title: 'Expenses',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="dollarsign.circle.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: 'Settings',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="gearshape.fill" color={color} />,
         }}
       />
           </Tabs>
