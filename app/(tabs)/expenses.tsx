@@ -16,8 +16,8 @@ export default function Expenses() {
           />
         </View>
         <View className="ml-4 flex-1">
-          <Text className="text-gray-600 text-sm">Welcome back</Text>
-          <Text className="text-black text-lg font-semibold">aizad</Text>
+          <Text className="text-white text-sm">Welcome back</Text>
+          <Text className="text-white text-lg font-semibold">aizad</Text>
         </View>
         <View className="flex-row items-center">
           {/* Search button */}

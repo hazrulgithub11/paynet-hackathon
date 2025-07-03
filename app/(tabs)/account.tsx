@@ -18,8 +18,8 @@ export default function Account() {
           />
         </View>
         <View className="ml-4 flex-1">
-          <Text className="text-gray-600 text-sm">Welcome back</Text>
-          <Text className="text-black text-lg font-semibold">aizad</Text>
+          <Text className="text-white text-sm">Welcome back</Text>
+          <Text className="text-white text-lg font-semibold">aizad</Text>
         </View>
         <View className="flex-row items-center">
           {/* Search button */}
@@ -42,7 +42,7 @@ export default function Account() {
         </View>
       </View>
       <View className="flex-1 justify-start items-center z-10 mt-32">
-        <Text className="text-2xl font-bold text-black mb-6">Your Accounts</Text>
+        <Text className="text-2xl font-bold text-white mb-6">Your Accounts</Text>
         
         <View className="flex-1 w-full">
           <FlatList
