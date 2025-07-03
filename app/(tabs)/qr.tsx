@@ -38,7 +38,7 @@ export default function QR() {
       <View className="flex-1 relative">
         <Background />
         <View className="flex-1 justify-center items-center z-10 p-5">
-          <Text className="text-xl font-bold text-white">Loading camera permissions...</Text>
+          <Text className="text-xl font-bold text-black">Loading camera permissions...</Text>
         </View>
       </View>
     );
@@ -50,7 +50,7 @@ export default function QR() {
       <View className="flex-1 relative">
         <Background />
         <View className="flex-1 justify-center items-center z-10 p-5">
-          <Text className="text-xl font-bold text-white mb-4 text-center">
+          <Text className="text-xl font-bold text-black mb-4 text-center">
             Camera access is required to scan QR codes
           </Text>
           <TouchableOpacity
@@ -90,14 +90,14 @@ export default function QR() {
           </View>
           
           {/* Instructions */}
-          <Text className="text-white text-center mt-8 px-4 text-lg font-medium">
+          <Text className="text-black text-center mt-8 px-4 text-lg font-medium">
             {scanned ? 'QR Code Scanned!' : 'Position QR code within the frame'}
           </Text>
           
           {scannedData && scanned && (
             <View className="mt-4 bg-black/50 p-4 rounded-lg mx-4">
-              <Text className="text-white text-center font-medium">Scanned Data:</Text>
-              <Text className="text-blue-300 text-center mt-2">{scannedData}</Text>
+              <Text className="text-black text-center font-medium">Scanned Data:</Text>
+              <Text className="text-black text-center mt-2">{scannedData}</Text>
             </View>
           )}
           
