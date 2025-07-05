@@ -1,0 +1,50 @@
+{
+  "bankName": "Maybank",
+  "country": "Malaysia",
+  "currency": "MYR",
+  "bankKeys": {
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxeWrRrNy0cKxAKqbLSYx\n9idsedccWRay0ILV8CmPKYkYr6DGrrhH/Apf8IhjMDlbjNtR/84crJURYY5pEku5\nPnWiXQOAQ0AttOlfq75rLb9l43JVDj6B8ecfRB0+hI7Af4fTE2ecb02/6EOUrYTq\ntKqd60ChFqAP/7WpkG0aurSIsVnxgmOjmX6uz7bX+CrTID6y/86G4PAyempsFeYq\nFtjDYc+adJPPnPelj8GOTmTQHkjMjeeaej/E8Z46Wabks4eMVRdrPzv0eCZYO5+e\nXQh3ezq/SpwA5PMy+1dBasQaUMmYCjsQLAOQ3Xga1gBPVUDO2AuRnJ6KdGuItTlv\nOwIDAQAB\n-----END PUBLIC KEY-----\n",
+    "privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDF5atGs3LRwrEA\nqpstJjH2J2x51xxZFrLQgtXwKY8piRivoMauuEf8Cl/wiGMwOVuM21H/zhyslRFh\njmkSS7k+daJdA4BDQC206V+rvmstv2XjclUOPoHx5x9EHT6EjsB/h9MTZ5xvTb/o\nQ5SthOq0qp3rQKEWoA//tamQbRq6tIixWfGCY6OZfq7Pttf4KtMgPrL/zobg8DJ6\namwV5ioW2MNhz5p0k8+c96WPwY5OZNAeSMyN55p6P8TxnjpZpuSzh4xVF2s/O/R4\nJlg7n55dCHd7Or9KnADk8zL7V0FqxBpQyZgKOxAsA5DdeBrWAE9VQM7YC5Gcnop0\na4i1OW87AgMBAAECggEABOBDCRntQVKF9b0FgnSAW8DeeexH78CtT+cHmG7zC00P\nzIo8l3FFZa0u4DMd32zd7SmPI473GFkP7nY0YTlbwMbHrCQkuFjP6wxx5cxqT2qW\nM/yUMJhvr3FkvtMC+Tjw/tb852ubWiQN8v/i1kQeeFcf3TULO/JB5/4KN6KsHu2+\nQWioibEuudsQfW1UATC1Hy8Ts/J1XC7JtYnpmtZ7I4cJCCONxrOaiDUSm7SQuJfo\n+nWzObI2+9C0zEcdJG0KKsDOqwF+opFoSCdP1wFHSgVTa4j/kAPkLft3m6njJVEJ\nzyChkXDLC5Ue65uBBIeFR57PSJl+TAJSXMSJqKXS6QKBgQD0j3/BA8uDQV4hhcST\nqBIROBchJ+JMeWR5iQbKSfy/AeaUEDRi1ETLGpzXcI5UFCAtvsRrn0W0w1hwDaDj\n7so3FHWogTsU7AYjQJNEFchMovkHdoGXkg46wXWyVD1PFL/odZ624d6xQ+vxKjiJ\n6S5Up8pnZxD7StpHXUBge1ElrQKBgQDPJ2WoEB8dagEkazcAv0+mQDLO9sbD12VN\nr40XwGC/Hz2qNY7veDWY5LWj4YCPfqNLj2kgC7uzir0raNtGG73PhyuYE74Pm7CH\ntWAaCKtbs8wqiAe8+KvUZEOYpC/RzcmRx3l5Mx6EghMa6G5ySYN2vGLLzM5xTQkq\njl454eD1hwKBgFnLYo39FblQw/4s/nt0p4WZAa0T1txbag/RxyN5PQro6L+On511\n8PheAh58XlXyucnyFG6roU14uD0UU/G82JSWt4iyQn4xFyPUbv39vXieEi+yTGzZ\nnM3oAI4ErioeJUR2A1uE3V5a4QPAi9ffPTqqDQAgcLTDzBeN3rhOLwJVAoGAQfH5\nw6G2Ngfr6ysSbHN6qKMhSY93wRqNzkhHczsz0UPhvpCkOwmajlyokk4UPhoDY+d4\ngNIbY9GT3QDZZR0ptKoEL7qBM7jNXrZXrJH78wpuwU9inz7OfKOafTovWuvW8kh9\nHB8w5N//sv4xQsKyThc0oEpHofvzIhAGYQjOM3sCgYAWp2hcq4NQ4JjwE3rF3WWc\nhM2qCjm/oRmee/649iGAUqCKBKu7uAYvS+Wuf+xFb+I+Vud4tTZeBkI2Rh6qwY6H\njhfM2cxxm5DAiNgA6+6gZ/wjFGPL+0r2rLxXT63YM4FDHEkFXy7jDhVJ739jNYhj\ndGFS1tJtsO6Vvb4Zu4u78A==\n-----END PRIVATE KEY-----\n",
+    "bankId": "MAYBANK_001"
+  },
+  "users": [
+    {
+      "userId": "malay_001",
+      "name": "Ahmad Abdullah",
+      "balance": 9970,
+      "accountNumber": "MY001234567890",
+      "phone": "+60123456789",
+      "email": "ahmad@maybank.com"
+    },
+    {
+      "userId": "malay_002",
+      "name": "Siti Nurhaliza",
+      "balance": 15000,
+      "accountNumber": "MY001234567891",
+      "phone": "+60123456790",
+      "email": "siti@maybank.com"
+    }
+  ],
+  "merchants": [
+    {
+      "merchantId": "merchant_malay_001",
+      "name": "KL Shopping Center",
+      "balance": 17.939999999999998,
+      "accountNumber": "MY001234567892",
+      "qrCode": "MY_QR_001_KL_SHOPPING",
+      "exchangeRate": {
+        "THB_to_MYR": 0.13
+      }
+    },
+    {
+      "merchantId": "merchant_malay_002",
+      "name": "Penang Food Court",
+      "balance": 3806.53,
+      "accountNumber": "MY001234567893",
+      "qrCode": "MY_QR_002_PENANG_FOOD",
+      "exchangeRate": {
+        "THB_to_MYR": 0.13
+      }
+    }
+  ]
+}

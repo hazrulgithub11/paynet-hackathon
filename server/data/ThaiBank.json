@@ -1,0 +1,40 @@
+{
+  "bankName": "Thai Bank",
+  "country": "Thailand",
+  "currency": "THB",
+  "bankKeys": {
+    "publicKey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3MIjNdqy7uXaoPbbMLQs\nQRsum3uxF9LD1+fnyOuZAyfHCqwTFIdrqEqep0iBp4MS9OjRCDQe3U82QqahoI5J\nCdYDdSrCbUS5A7XebMrfuwsCarLfcXI6MlxC/RkIvUxIqW3e47LrrJv/ZGRKCL7I\n21ZkTJI4EInXLF3Xvp4Ldhpwv4/HIdk65NBy60/4/s/pGwWhuR160LtgCp57chuf\n4sz/+x3HycH+MtHrC1ATLNP4CpRIFrmToV9ZaWgQyOefOec1B87y0lIzO8ztGv/G\nDgVJSWX3K8qT+kUSly30P05lqgBDapthBG1Ro5aor+T6i2FbtLbiOYjaBfm5fbDC\nqwIDAQAB\n-----END PUBLIC KEY-----\n",
+    "privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDcwiM12rLu5dqg\n9tswtCxBGy6be7EX0sPX5+fI65kDJ8cKrBMUh2uoSp6nSIGngxL06NEINB7dTzZC\npqGgjkkJ1gN1KsJtRLkDtd5syt+7CwJqst9xcjoyXEL9GQi9TEipbd7jsuusm/9k\nZEoIvsjbVmRMkjgQidcsXde+ngt2GnC/j8ch2Trk0HLrT/j+z+kbBaG5HXrQu2AK\nnntyG5/izP/7HcfJwf4y0esLUBMs0/gKlEgWuZOhX1lpaBDI55855zUHzvLSUjM7\nzO0a/8YOBUlJZfcrypP6RRKXLfQ/TmWqAENqm2EEbVGjlqiv5PqLYVu0tuI5iNoF\n+bl9sMKrAgMBAAECggEALGLYY4aifYg3qi+YKLXBRCHsABUhqVGWUP3uy6YbMNg5\nm/q3J2SHD+JY/feFIiInmJiLFuQr5IF9vm70hmy1YMXoEhHT39Z2gLl7jFJKI7h1\n9vAaHxxBeUi1q1/yMuV4oqBVtWCPJDiFZDEJ9bIufnNjXUX1AdZFLkV8EHaEhW0x\n5Dhyzz597OCNSdKb4yFw6sCx7TOxjUeAbeqDu5uTPmv3P9gupF90igDyL+t/dODi\nOVzbOraZ3B+oJlI/7OgOl024HOieTrch0V4eLlcs9ORerf/jXnk8LU5afXZUdJ8X\nYP2Ib3+ZMCFvw4HE+y85l1nqQaTZ6ggVYONRpROBSQKBgQD1A6A2QYAzO75lZPrM\nG8bIEjGLUmseBDm9paywU9VNOVFDiPHV9FRpwoN2rE5msgDfpxx5uuOmyNzMzIBf\nRltZrzRzYA1gyVCjQSaYDFidNY8yv9pyLX6c4EcWJ0BTBQE1bqwso1YyPczTRpdN\n1TsLc/14H83EL1eO1rAwLG5FTQKBgQDmqBfqt2hV8n+QZwlas+DGzt0MyVHPqA8O\nDhV9Nd+cbe7fINaqqK8XkT8fUaB9Fo0YTlkyIPkFIsW5qpgI36pp9j6W8NlEpdaO\n8JFl2naGqTnZzIBmT1F9UU/qwvJaM1/luX6Hygw5/bFM+prTdnh+nNlqUm03KYeV\nfx82WmNL1wKBgQDg6mgrBivqXCCmsXDs516uEM18SLdeQaDDsA97eimnj0NDDLZ7\noqPOximqSfham3Lj3GLueBo848yVD/GUBGEdThGHDBibzZIBm3ATSdoazqzaeHXO\nNGczGUsIUhXhYAnBBAx3maUpz8Nz+ywv3dsq41o96GwaeR8WV4w7XL4JTQKBgBDI\n0Jy65fPDJrc6WDrqdgPhj8JbcAGdaCMMsVGgNvpqIYTJHfXjOoKLhj1gMj6IApJv\nORxlu9k804iUOmYC6KK3UYyoUBcnvjo+lUYFJLTd4aDQudM4GGT3IsqhjwMzU9oi\nqmt1L3iU1m8UmWmj6FbGUSfkgaAO/JfLXVkWML2XAoGAdWUbkwvgwrqum9bG4IUJ\nU4utIljm6Z6ni6f7kDlb0fX++cHkJymoq0srnHN3IuATCqMD7gV1WtFG2jad2Oh/\neMZ0s76y4P8JHX1J+Z9pp1M+i/O8CYNJo73y6rcKkApfx/+VLkWIOkFz3f2UbHgz\nrl7//0uvMjMJ/Q7kcgQ36n8=\n-----END PRIVATE KEY-----\n",
+    "bankId": "THAI_BANK_001"
+  },
+  "users": [
+    {
+      "userId": "thai_001",
+      "name": "Ah Kong",
+      "balance": 29980,
+      "accountNumber": "TH001234567890",
+      "phone": "+66812345678",
+      "email": "ahkong@thaibank.com"
+    },
+    {
+      "userId": "thai_002",
+      "name": "Somchai",
+      "balance": 15601,
+      "accountNumber": "TH001234567891",
+      "phone": "+66812345679",
+      "email": "somchai@thaibank.com"
+    }
+  ],
+  "merchants": [
+    {
+      "merchantId": "merchant_thai_001",
+      "name": "Bangkok Mall",
+      "balance": 50230.7,
+      "accountNumber": "TH001234567892",
+      "qrCode": "TH_QR_001_BANGKOK_MALL",
+      "exchangeRate": {
+        "MYR_to_THB": 7.69
+      }
+    }
+  ]
+}
