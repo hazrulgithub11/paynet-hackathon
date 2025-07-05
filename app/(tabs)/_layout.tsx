@@ -18,6 +18,7 @@ export default function TabLayout() {
       { label: 'Account', icon: 'person.fill' as const, screen: 'account' },
       { label: 'QR Code', icon: 'camera.fill' as const, screen: 'qr' },
       { label: 'Expenses', icon: 'dollarsign.circle.fill' as const, screen: 'expenses' },
+      { label: 'Settings', icon: 'gearshape.fill' as const, screen: 'settings' },
     ];
 
     return (
@@ -77,6 +78,13 @@ export default function TabLayout() {
         options={{
           title: 'Expenses',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="dollarsign.circle.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="gearshape.fill" color={color} />,
         }}
       />
           </Tabs>
