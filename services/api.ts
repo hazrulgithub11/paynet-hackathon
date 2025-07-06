@@ -1,5 +1,5 @@
-// const BASE_URL = 'http://192.168.1.7:3000'; local
-const BASE_URL = 'https://paynet.hrzhkm.xyz';
+const BASE_URL = 'http://192.168.1.7:3000'; 
+// const BASE_URL = 'https://paynet.hrzhkm.xyz';
 export interface User {
   userId: string;
   name: string;

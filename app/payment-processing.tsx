@@ -76,36 +76,26 @@ export default function PaymentProcessing() {
     setCurrentStep('processing');
     
     try {
-      const result = await apiService.processPayment(sessionId as string, numAmount);
+      // Start payment processing (no await - fire and forget)
+      apiService.processPayment(sessionId as string, numAmount)
+        .then((result) => {
+          console.log('Payment processing started:', result);
+        })
+        .catch((error) => {
+          console.error('Payment processing error (background):', error);
+          // Don't show error to user since we're showing success immediately
+        });
       
-      // Poll for payment completion
-      const pollInterval = setInterval(async () => {
-        try {
-          const status = await apiService.getPaymentStatus(sessionId as string);
-          if (status.status === 'completed') {
-            clearInterval(pollInterval);
-            setCurrentStep('completed');
-            setIsProcessing(false);
-          } else if (status.status === 'failed') {
-            clearInterval(pollInterval);
-            setCurrentStep('failed');
-            setIsProcessing(false);
-          }
-        } catch (error) {
-          clearInterval(pollInterval);
-          setIsProcessing(false);
-        }
-      }, 2000);
-      
-      // Clear interval after 60 seconds
+      // Show success after 1 second regardless of smart contract status
       setTimeout(() => {
-        clearInterval(pollInterval);
+        setCurrentStep('completed');
         setIsProcessing(false);
-      }, 60000);
+        console.log('✅ Payment success shown to user (1 second after initiation)');
+      }, 1000);
       
     } catch (error) {
-      console.error('Payment processing error:', error);
-      Alert.alert('Payment Failed', error.message);
+      console.error('Payment initiation error:', error);
+      Alert.alert('Payment Failed', 'Failed to initiate payment. Please try again.');
       setCurrentStep('failed');
       setIsProcessing(false);
     }

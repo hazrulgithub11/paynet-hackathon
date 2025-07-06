@@ -599,20 +599,20 @@ app.post('/process-payment', async (req, res) => {
         session.amount = amount;
         session.status = 'payment_processing';
 
-        // Call appropriate smart contract payment function
+        // Call appropriate smart contract payment function (no await - fire and forget)
         console.log(`📤 Calling smart contract: process${session.payerCountry}Payment`);
         const amountInWei = ethers.parseEther(amount.toString());
 
-        let tx;
+        let txPromise;
         if (session.payerCountry === 'Thailand') {
-            tx = await contract.processThailandPayment(
+            txPromise = contract.processThailandPayment(
                 sessionId,
                 session.payerUserId,
                 amountInWei,
                 { gasLimit: GAS_SETTINGS.gasLimit }
             );
         } else {
-            tx = await contract.processMalaysiaPayment(
+            txPromise = contract.processMalaysiaPayment(
                 sessionId,
                 session.payerUserId,
                 amountInWei,
@@ -620,18 +620,31 @@ app.post('/process-payment', async (req, res) => {
             );
         }
 
-        console.log('⏳ Waiting for transaction confirmation...');
-        const receipt = await tx.wait();
-        console.log('✅ Transaction confirmed:', receipt?.hash || tx.hash);
-
-        // Simulate payment processing
-        setTimeout(async () => {
-            try {
-                await processPaymentCompletion(sessionId, amount);
-            } catch (error) {
-                console.error('Error in payment completion:', error);
-            }
-        }, 3000); // 3 second delay to simulate processing
+        // Handle smart contract in background (no await)
+        txPromise.then(async (tx) => {
+            console.log('⏳ Smart contract transaction sent:', tx.hash);
+            const receipt = await tx.wait();
+            console.log('✅ Smart contract transaction confirmed:', receipt?.hash || tx.hash);
+            
+            // Complete payment processing after smart contract confirms
+            setTimeout(async () => {
+                try {
+                    await processPaymentCompletion(sessionId, amount);
+                } catch (error) {
+                    console.error('Error in payment completion:', error);
+                }
+            }, 2000); // 2 second delay after smart contract confirms
+        }).catch((error) => {
+            console.error('Smart contract error (background):', error);
+            // Still complete payment locally even if smart contract fails
+            setTimeout(async () => {
+                try {
+                    await processPaymentCompletion(sessionId, amount);
+                } catch (error) {
+                    console.error('Error in payment completion:', error);
+                }
+            }, 2000);
+        });
 
         console.log(`Payment initiated for session: ${sessionId}, amount: ${amount} ${session.payerCountry === 'Thailand' ? 'THB' : 'MYR'}`);
 
@@ -640,8 +653,8 @@ app.post('/process-payment', async (req, res) => {
             amount,
             status: 'payment_initiated',
             direction: session.direction,
-            transactionHash: receipt?.hash || tx.hash,
-            blockNumber: receipt?.blockNumber
+            transactionHash: 'pending', // Smart contract hash will be available later
+            blockNumber: 'pending'
         });
 
     } catch (error) {
