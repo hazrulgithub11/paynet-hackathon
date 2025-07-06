@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, FlatList, Image, Modal, Text, TouchableOpacity, View } from 'react-native';
+import malaysiaData from '@/server/data/mydummy.json';
+import thailandData from '@/server/data/thaidummy.json';
 
 export default function HomeScreen() {
   const { selectedUser, userCountry, setSelectedUser, setUserCountry, getUserCurrency } = useUser();
@@ -36,7 +38,11 @@ export default function HomeScreen() {
   };
 
   const availableUsers = mockUsers[userCountry] || [];
-  const balance = selectedUser?.balance || 0;
+  
+  // Calculate total balance from all accounts based on selected country
+  const currentData = userCountry === 'Thailand' ? thailandData : malaysiaData;
+  const totalBalance = currentData.userAccounts.reduce((sum, account) => sum + account.balance, 0);
+  const balance = totalBalance;
   const currency = getUserCurrency();
 
   return (
@@ -58,10 +64,10 @@ export default function HomeScreen() {
         
         <View className="ml-4 flex-1">
           <TouchableOpacity onPress={() => setIsUserModalVisible(true)}>
-            <Text className="text-black text-lg font-semibold">
+            <Text className="text-white text-lg font-semibold">
               {selectedUser?.name || 'Select User'}
             </Text>
-            <Text className="text-gray-600 text-sm">
+            <Text className="text-white text-sm">
               {selectedUser?.accountNumber || 'No account selected'}
             </Text>
           </TouchableOpacity>
@@ -80,9 +86,9 @@ export default function HomeScreen() {
       
       {/* Main Content */}
       <View className="flex-1 justify-start items-center z-10 mt-40">
-        <Text className="text-black text-base mb-2">Available Balance</Text>
+        <Text className="text-white text-base mb-2">Total Balance - All Accounts</Text>
         <View className="flex-row items-center justify-center mb-8">
-          <Text className="text-black text-4xl font-semibold mr-3">
+          <Text className="text-white text-4xl font-semibold mr-3">
             {isBalanceVisible ? `${currency} ${balance.toLocaleString()}` : '•••••••••'}
           </Text>
           <TouchableOpacity onPress={toggleBalanceVisibility} className="p-2">
@@ -98,38 +104,43 @@ export default function HomeScreen() {
         <View className="flex-row justify-around w-full px-5 mb-6">
           <TouchableOpacity
             onPress={handleQuickPay}
-            className="bg-blue-600 rounded-xl p-4 items-center flex-1 mr-2"
+            className="items-center flex-1"
           >
-            <Ionicons name="qr-code" size={24} color="white" />
-            <Text className="text-white font-semibold mt-2">Scan & Pay</Text>
+            <View className="bg-gray-100 rounded-full w-16 h-16 items-center justify-center shadow-lg mb-2">
+              <Ionicons name="qr-code" size={28} color="#374151" />
+            </View>
+            <Text className="text-white font-medium text-sm text-center">Scan & Pay</Text>
           </TouchableOpacity>
           
           <TouchableOpacity
             onPress={() => router.push('/merchant-qr')}
-            className="bg-purple-600 rounded-xl p-4 items-center flex-1 mx-1"
+            className="items-center flex-1"
           >
-            <Ionicons name="qr-code-outline" size={24} color="white" />
-            <Text className="text-white font-semibold mt-2">QR Generator</Text>
+            <View className="bg-gray-100 rounded-full w-16 h-16 items-center justify-center shadow-lg mb-2">
+              <Ionicons name="qr-code-outline" size={28} color="#374151" />
+            </View>
+            <Text className="text-white font-medium text-sm text-center">QR Generator</Text>
           </TouchableOpacity>
           
           <TouchableOpacity
             onPress={() => router.push('/expenses')}
-            className="bg-green-600 rounded-xl p-4 items-center flex-1 ml-2"
+            className="items-center flex-1"
           >
-            <Ionicons name="receipt" size={24} color="white" />
-            <Text className="text-white font-semibold mt-2">Transactions</Text>
+            <View className="bg-gray-100 rounded-full w-16 h-16 items-center justify-center shadow-lg mb-2">
+              <Ionicons name="receipt" size={28} color="#374151" />
+            </View>
+            <Text className="text-white font-medium text-sm text-center">Transactions</Text>
           </TouchableOpacity>
+
         </View>
         
         {/* Account Card */}
-        {selectedUser && (
-          <View className="w-full px-5 mt-6">
-            <PaymentCard 
-              accountName={`${selectedUser.name} (${userCountry})`}
-              balance={`${currency} ${balance.toLocaleString()}`}
-            />
-          </View>
-        )}
+        <View className="w-full px-5 mt-6">
+          <PaymentCard 
+            accountName={`Total Balance (${userCountry})`}
+            balance={`${currency} ${balance.toLocaleString()}`}
+          />
+        </View>
         
         {/* View All Accounts Button */}
         <View className="mt-4">

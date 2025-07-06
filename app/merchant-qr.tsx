@@ -1,5 +1,6 @@
 import Background from '@/components/ui/Background';
 import apiService from '@/services/api';
+import { useUser } from '@/contexts/UserContext';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -19,13 +20,6 @@ const mockMerchants = {
   ],
   Malaysia: [
     {
-      merchantId: "merchant_malay_001",
-      name: "KL Shopping Center",
-      qrCode: "MY_QR_001_KL_SHOPPING",
-      balance: 17.94,
-      accountNumber: "MY001234567892"
-    },
-    {
       merchantId: "merchant_malay_002",
       name: "Penang Food Court",
       qrCode: "MY_QR_002_PENANG_FOOD",
@@ -36,13 +30,13 @@ const mockMerchants = {
 };
 
 export default function MerchantQR() {
-  const [selectedCountry, setSelectedCountry] = useState<'Thailand' | 'Malaysia'>('Malaysia');
+  const { userCountry, getUserCurrency } = useUser();
   const [selectedMerchant, setSelectedMerchant] = useState<any>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
   const [generatedQRData, setGeneratedQRData] = useState<string>('');
 
-  const merchants = mockMerchants[selectedCountry];
+  const merchants = mockMerchants[userCountry as keyof typeof mockMerchants] || [];
 
   const handleGenerateQR = async (merchant: any) => {
     setIsGenerating(true);
@@ -52,14 +46,6 @@ export default function MerchantQR() {
       setGeneratedQRData(result.qrData.qrCode);
       setShowQRModal(true);
       setIsGenerating(false);
-      
-      Alert.alert(
-        'QR Code Generated Successfully!',
-        `Merchant: ${result.qrData.merchantName}\nCountry: ${result.qrData.country}\nCurrency: ${result.qrData.currency}`,
-        [
-          { text: 'OK' }
-        ]
-      );
     } catch (error) {
       console.error('Error generating QR:', error);
       Alert.alert('Error', 'Failed to generate QR code. Make sure the server is running.');
@@ -67,12 +53,7 @@ export default function MerchantQR() {
     }
   };
 
-  const simulateQRCode = (merchant: any) => {
-    // This simulates what the QR code would contain
-    setSelectedMerchant(merchant);
-    setGeneratedQRData(merchant.qrCode);
-    setShowQRModal(true);
-  };
+
 
   const shareQRCode = async () => {
     try {
@@ -106,100 +87,106 @@ export default function MerchantQR() {
         >
           <Ionicons name="arrow-back" size={20} color="black" />
         </TouchableOpacity>
-        <Text className="text-xl font-bold ml-4">Merchant QR Generator</Text>
       </View>
       
       {/* Content */}
       <View className="flex-1 justify-start items-center z-10 mt-32 px-5">
-        <Text className="text-2xl font-bold text-center mb-2">Generate QR Code</Text>
-        <Text className="text-gray-600 text-center mb-8">
-          Select a merchant to generate QR code for testing
+        <Text className="text-2xl text-white font-bold text-center mb-2">Generate QR Code</Text>
+        <Text className="text-white text-center mb-2">
+          Select a merchant 
         </Text>
         
-        {/* Country Selector */}
-        <View className="flex-row w-full mb-6">
-          <TouchableOpacity
-            onPress={() => setSelectedCountry('Thailand')}
-            className={`flex-1 p-4 rounded-l-xl ${
-              selectedCountry === 'Thailand' ? 'bg-blue-600' : 'bg-gray-200'
-            }`}
-          >
-            <Text className={`text-center font-semibold ${
-              selectedCountry === 'Thailand' ? 'text-white' : 'text-gray-600'
-            }`}>
-              🇹🇭 Thailand
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setSelectedCountry('Malaysia')}
-            className={`flex-1 p-4 rounded-r-xl ${
-              selectedCountry === 'Malaysia' ? 'bg-blue-600' : 'bg-gray-200'
-            }`}
-          >
-            <Text className={`text-center font-semibold ${
-              selectedCountry === 'Malaysia' ? 'text-white' : 'text-gray-600'
-            }`}>
-              🇲🇾 Malaysia
-            </Text>
-          </TouchableOpacity>
+        {/* Country Indicator */}
+        <View className="bg-blue-100 rounded-full px-4 py-2 mb-6">
+          <Text className="text-blue-800 font-semibold text-center">
+            {userCountry === 'Thailand' ? '🇹🇭 Thailand' : '🇲🇾 Malaysia'}
+          </Text>
         </View>
         
+
+        
         {/* Merchants List */}
-        <View className="w-full space-y-4">
+        <View className="w-full space-y-6">
           {merchants.map((merchant) => (
-            <View key={merchant.merchantId} className="bg-white rounded-xl p-4 shadow-sm">
-              <View className="flex-row items-center mb-2">
-                <View className="w-10 h-10 bg-blue-100 rounded-full items-center justify-center mr-3">
-                  <Ionicons name="storefront" size={20} color="#3B82F6" />
+            <View key={merchant.merchantId} className="bg-white rounded-2xl p-6 shadow-2xl border border-gray-100" style={{
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 8,
+              },
+              shadowOpacity: 0.1,
+              shadowRadius: 24,
+              elevation: 12,
+            }}>
+              {/* Premium Header with Gradient Accent */}
+              <View className="flex-row items-center mb-5">
+                <View className="w-14 h-14 rounded-2xl items-center justify-center mr-4 shadow-lg" style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  backgroundColor: '#667eea',
+                  shadowColor: '#667eea',
+                  shadowOffset: {
+                    width: 0,
+                    height: 4,
+                  },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 8,
+                  elevation: 6,
+                }}>
+                  <Ionicons name="storefront" size={24} color="white" />
                 </View>
                 <View className="flex-1">
-                  <Text className="text-lg font-semibold">{merchant.name}</Text>
-                  <Text className="text-gray-600 text-sm">ID: {merchant.merchantId}</Text>
+                  <Text className="text-xl font-bold text-gray-900 mb-1">{merchant.name}</Text>
+                  <View className="bg-gray-100 rounded-full px-3 py-1 self-start">
+                    <Text className="text-gray-600 text-xs font-medium">ID: {merchant.merchantId}</Text>
+                  </View>
                 </View>
               </View>
               
-              <Text className="text-gray-600 mb-1">Account: {merchant.accountNumber}</Text>
-              <Text className="text-sm text-gray-500 mb-4">
-                Balance: {selectedCountry === 'Thailand' ? 'THB' : 'MYR'} {merchant.balance.toLocaleString()}
-              </Text>
-              
-              <View className="flex-row space-x-2">
-                <TouchableOpacity
-                  onPress={() => handleGenerateQR(merchant)}
-                  disabled={isGenerating}
-                  className={`flex-1 py-3 rounded-lg ${
-                    isGenerating ? 'bg-gray-300' : 'bg-blue-600'
-                  }`}
-                >
-                  <Text className="text-white text-center font-semibold">
-                    {isGenerating ? 'Generating...' : 'Generate QR'}
-                  </Text>
-                </TouchableOpacity>
+              {/* Enhanced Account Info */}
+              <View className="bg-gray-50 rounded-xl p-4 mb-5 border border-gray-100">
+                <View className="flex-row items-center mb-2">
+                  <View className="w-6 h-6 bg-blue-100 rounded-full items-center justify-center mr-3">
+                    <Ionicons name="card" size={14} color="#3B82F6" />
+                  </View>
+                  <Text className="text-gray-700 font-medium">Account Details</Text>
+                </View>
+                <Text className="text-gray-600 text-sm mb-1 ml-9">Account: {merchant.accountNumber}</Text>
                 
-                <TouchableOpacity
-                  onPress={() => simulateQRCode(merchant)}
-                  className="flex-1 py-3 rounded-lg bg-green-600"
-                >
-                  <Text className="text-white text-center font-semibold">
-                    Show QR
-                  </Text>
-                </TouchableOpacity>
               </View>
+              
+              {/* Premium Generate Button */}
+              <TouchableOpacity
+                onPress={() => handleGenerateQR(merchant)}
+                disabled={isGenerating}
+                className={`w-full py-4 rounded-xl flex-row items-center justify-center ${
+                  isGenerating ? 'bg-gray-300' : 'bg-gradient-to-r from-yellow-400 to-orange-500'
+                }`}
+                style={{
+                  shadowColor: isGenerating ? '#000' : '#F59E0B',
+                  shadowOffset: {
+                    width: 0,
+                    height: 4,
+                  },
+                  shadowOpacity: isGenerating ? 0.1 : 0.3,
+                  shadowRadius: 8,
+                  elevation: 6,
+                  backgroundColor: isGenerating ? '#D1D5DB' : '#F59E0B',
+                }}
+              >
+                <Ionicons 
+                  name={isGenerating ? "hourglass" : "qr-code"} 
+                  size={20} 
+                  color="white" 
+                  style={{ marginRight: 8 }}
+                />
+                <Text className="text-white text-center font-bold text-lg">
+                  {isGenerating ? 'Generating...' : 'Generate QR Code'}
+                </Text>
+              </TouchableOpacity>
             </View>
           ))}
         </View>
-        
-        {/* Instructions */}
-        <View className="mt-8 bg-blue-50 rounded-xl p-4">
-          <Text className="text-blue-800 font-semibold mb-2">How to Test:</Text>
-          <Text className="text-blue-700 text-sm">
-            1. Generate a QR code for a merchant{'\n'}
-            2. Use "Show QR" to display the QR code{'\n'}
-            3. Go to the QR scanner tab and scan the code{'\n'}
-            4. Complete the payment flow{'\n'}
-            5. Or copy QR data for manual testing
-          </Text>
-        </View>
+      
       </View>
       
       {/* QR Code Modal */}
@@ -226,7 +213,7 @@ export default function MerchantQR() {
                   <Ionicons name="storefront" size={32} color="#3B82F6" />
                 </View>
                 <Text className="text-lg font-semibold text-center">{selectedMerchant.name}</Text>
-                <Text className="text-gray-600 text-sm">{selectedCountry}</Text>
+                <Text className="text-gray-600 text-sm">{userCountry}</Text>
               </View>
             )}
             

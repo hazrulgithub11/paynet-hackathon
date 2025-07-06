@@ -1,13 +1,30 @@
 import { User } from '@/services/api';
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import malaysiaData from '@/server/data/mydummy.json';
+import thailandData from '@/server/data/thaidummy.json';
+
+// Define account type
+interface Account {
+  accountId: string;
+  accountName: string;
+  accountNumber: string;
+  balance: number;
+  type: 'bank' | 'digital_wallet';
+  provider: string;
+  isActive: boolean;
+  color: string;
+}
 
 interface UserContextType {
   selectedUser: User | null;
   userCountry: string;
+  selectedAccount: Account | null;
   setSelectedUser: (user: User | null) => void;
   setUserCountry: (country: string) => void;
+  setSelectedAccount: (account: Account) => void;
   getCurrentBankId: () => string | null;
   getUserCurrency: () => string;
+  getUserAccounts: () => Account[];
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -59,13 +76,50 @@ interface UserProviderProps {
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [userCountry, setUserCountry] = useState<string>('Malaysia'); // Default to Malaysia
+  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
-  // Initialize with first user of selected country
+  // Get accounts based on current country
+  const getUserAccounts = (): Account[] => {
+    const currentData = userCountry === 'Thailand' ? thailandData : malaysiaData;
+    return currentData.userAccounts as Account[];
+  };
+
+  // Custom setSelectedAccount with logging
+  const handleSetSelectedAccount = (account: Account) => {
+    console.log('UserContext: Setting selected account to:', account.accountName, account.accountId);
+    console.log('UserContext: Previous selected account:', selectedAccount?.accountName, selectedAccount?.accountId);
+    setSelectedAccount(account);
+  };
+
+  // Initialize with first user of selected country and first account
   useEffect(() => {
     if (!selectedUser && mockUsers[userCountry]) {
       setSelectedUser(mockUsers[userCountry][0]);
     }
+    
+    // Only initialize account if none is selected
+    if (!selectedAccount) {
+      const accounts = getUserAccounts();
+      if (accounts.length > 0) {
+        console.log('UserContext: Initializing with first account:', accounts[0].accountName);
+        setSelectedAccount(accounts[0]);
+      }
+    }
   }, [userCountry, selectedUser]);
+
+  // Log when selectedAccount changes
+  useEffect(() => {
+    if (selectedAccount) {
+      console.log('UserContext: Selected account changed to:', selectedAccount.accountName, selectedAccount.accountId);
+    }
+  }, [selectedAccount]);
+
+  // Helper function to determine country from account
+  const getUserCountryFromAccount = (account: Account | null): string => {
+    if (!account) return '';
+    // Check if account ID contains 'th' for Thailand
+    return account.accountId.includes('th') ? 'Thailand' : 'Malaysia';
+  };
 
   const getCurrentBankId = (): string | null => {
     if (userCountry === 'Thailand') {
@@ -83,10 +137,13 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const value: UserContextType = {
     selectedUser,
     userCountry,
+    selectedAccount,
     setSelectedUser,
     setUserCountry,
+    setSelectedAccount: handleSetSelectedAccount,
     getCurrentBankId,
     getUserCurrency,
+    getUserAccounts,
   };
 
   return (
@@ -106,3 +163,5 @@ export const useUser = (): UserContextType => {
 
 // Export mock users for use in other components
 export { mockUsers };
+// Export Account type for use in other components
+export type { Account };

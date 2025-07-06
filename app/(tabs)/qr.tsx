@@ -11,7 +11,8 @@ export default function QR() {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const { selectedUser, userCountry } = useUser();
+  const { selectedUser, selectedAccount, userCountry, getUserCurrency } = useUser();
+  const currency = getUserCurrency();
 
   const handleBarCodeScanned = async ({ type, data }: BarcodeScanningResult) => {
     setScanned(true);
@@ -20,6 +21,13 @@ export default function QR() {
     try {
       if (!selectedUser) {
         Alert.alert('Error', 'Please select a user first');
+        setScanned(false);
+        setIsProcessing(false);
+        return;
+      }
+
+      if (!selectedAccount) {
+        Alert.alert('Error', 'Please select an account first');
         setScanned(false);
         setIsProcessing(false);
         return;
@@ -130,16 +138,16 @@ export default function QR() {
         <View className="flex-row items-center justify-between">
           <View>
             <Text className="text-white text-lg font-semibold">
-              {selectedUser?.name || 'No User Selected'}
+              {selectedAccount?.accountName || 'No Account Selected'}
             </Text>
             <Text className="text-white/80 text-sm">
-              {userCountry} • {selectedUser?.accountNumber}
+              {selectedAccount?.provider} • {selectedAccount?.accountNumber}
             </Text>
           </View>
           <View className="items-end">
             <Text className="text-white text-sm">Balance</Text>
             <Text className="text-white text-lg font-bold">
-              {userCountry === 'Thailand' ? 'THB' : 'MYR'} {selectedUser?.balance.toLocaleString()}
+              {currency} {selectedAccount?.balance.toLocaleString()}
             </Text>
           </View>
         </View>
@@ -199,17 +207,11 @@ export default function QR() {
         <View className="flex-row justify-center space-x-4">
           <TouchableOpacity
             className="bg-white/20 backdrop-blur-sm rounded-full p-4"
-            onPress={() => router.push('/')}
+            onPress={() => router.push('/merchant-qr')}
           >
-            <Ionicons name="home" size={24} color="white" />
+            <Ionicons name="qr-code-outline" size={24} color="white" />
           </TouchableOpacity>
           
-          <TouchableOpacity
-            className="bg-white/20 backdrop-blur-sm rounded-full p-4"
-            onPress={() => router.push('/account')}
-          >
-            <Ionicons name="person" size={24} color="white" />
-          </TouchableOpacity>
         </View>
       </View>
     </View>

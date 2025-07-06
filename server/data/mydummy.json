@@ -1,0 +1,74 @@
+{
+  "userAccounts": [
+    {
+      "accountId": "acc_001",
+      "accountName": "Maybank Savings",
+      "accountNumber": "5142 7890 1234",
+      "balance": 15420.50,
+      "type": "bank",
+      "provider": "Maybank",
+      "isActive": true,
+      "color": "bg-yellow-500"
+    },
+    {
+      "accountId": "acc_002",
+      "accountName": "CIMB Current",
+      "accountNumber": "8234 5678 9012",
+      "balance": 8750.25,
+      "type": "bank",
+      "provider": "CIMB Bank",
+      "isActive": true,
+      "color": "bg-red-500"
+    },
+    {
+      "accountId": "acc_003",
+      "accountName": "BSN Islamic",
+      "accountNumber": "1098 7654 3210",
+      "balance": 5230.75,
+      "type": "bank",
+      "provider": "Bank Simpanan Nasional",
+      "isActive": true,
+      "color": "bg-blue-500"
+    },
+    {
+      "accountId": "acc_004",
+      "accountName": "Touch n Go eWallet",
+      "accountNumber": "+60123456789",
+      "balance": 186.40,
+      "type": "digital_wallet",
+      "provider": "Touch n Go",
+      "isActive": true,
+      "color": "bg-blue-600"
+    },
+    {
+      "accountId": "acc_005",
+      "accountName": "ShopeePay",
+      "accountNumber": "shopee@email.com",
+      "balance": 67.80,
+      "type": "digital_wallet",
+      "provider": "Shopee",
+      "isActive": true,
+      "color": "bg-orange-500"
+    },
+    {
+      "accountId": "acc_006",
+      "accountName": "GrabPay",
+      "accountNumber": "+60123456789",
+      "balance": 124.30,
+      "type": "digital_wallet",
+      "provider": "Grab",
+      "isActive": true,
+      "color": "bg-green-500"
+    },
+    {
+      "accountId": "acc_007",
+      "accountName": "BigPay",
+      "accountNumber": "4567 8901 2345",
+      "balance": 445.60,
+      "type": "digital_wallet",
+      "provider": "BigPay",
+      "isActive": true,
+      "color": "bg-purple-500"
+    }
+  ]
+}

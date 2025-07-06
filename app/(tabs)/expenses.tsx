@@ -235,10 +235,10 @@ export default function Expenses() {
           />
         </View>
         <View className="ml-4 flex-1">
-          <Text className="text-black text-lg font-semibold">
+          <Text className="text-white text-lg font-semibold">
             {selectedUser?.name || 'Select User'}
           </Text>
-          <Text className="text-gray-600 text-sm">
+          <Text className="text-white text-sm">
             {userCountry} • {currency}
           </Text>
         </View>

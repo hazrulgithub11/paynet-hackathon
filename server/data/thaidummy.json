@@ -1,0 +1,94 @@
+{
+  "userAccounts": [
+    {
+      "accountId": "acc_th_001",
+      "accountName": "Kasikorn Bank Savings",
+      "accountNumber": "0123 4567 8901",
+      "balance": 45680.75,
+      "type": "bank",
+      "provider": "Kasikorn Bank",
+      "isActive": true,
+      "color": "bg-green-600"
+    },
+    {
+      "accountId": "acc_th_002",
+      "accountName": "Bangkok Bank Current",
+      "accountNumber": "2345 6789 0123",
+      "balance": 28350.50,
+      "type": "bank",
+      "provider": "Bangkok Bank",
+      "isActive": true,
+      "color": "bg-blue-700"
+    },
+    {
+      "accountId": "acc_th_003",
+      "accountName": "Siam Commercial Bank",
+      "accountNumber": "3456 7890 1234",
+      "balance": 18920.25,
+      "type": "bank",
+      "provider": "SCB",
+      "isActive": true,
+      "color": "bg-purple-600"
+    },
+    {
+      "accountId": "acc_th_004",
+      "accountName": "Krung Thai Bank",
+      "accountNumber": "4567 8901 2345",
+      "balance": 12450.00,
+      "type": "bank",
+      "provider": "Krung Thai Bank",
+      "isActive": true,
+      "color": "bg-blue-500"
+    },
+    {
+      "accountId": "acc_th_005",
+      "accountName": "TrueMoney Wallet",
+      "accountNumber": "+66812345678",
+      "balance": 2850.40,
+      "type": "digital_wallet",
+      "provider": "TrueMoney",
+      "isActive": true,
+      "color": "bg-red-500"
+    },
+    {
+      "accountId": "acc_th_006",
+      "accountName": "Rabbit LINE Pay",
+      "accountNumber": "line@thailand.com",
+      "balance": 1250.80,
+      "type": "digital_wallet",
+      "provider": "Rabbit LINE Pay",
+      "isActive": true,
+      "color": "bg-green-500"
+    },
+    {
+      "accountId": "acc_th_007",
+      "accountName": "AIS mPAY",
+      "accountNumber": "+66812345678",
+      "balance": 890.60,
+      "type": "digital_wallet",
+      "provider": "AIS mPAY",
+      "isActive": true,
+      "color": "bg-green-400"
+    },
+    {
+      "accountId": "acc_th_008",
+      "accountName": "SCB Easy",
+      "accountNumber": "scb@easy.com",
+      "balance": 3420.90,
+      "type": "digital_wallet",
+      "provider": "SCB Easy",
+      "isActive": true,
+      "color": "bg-purple-500"
+    },
+    {
+      "accountId": "acc_th_009",
+      "accountName": "PromptPay",
+      "accountNumber": "+66812345678",
+      "balance": 756.30,
+      "type": "digital_wallet",
+      "provider": "PromptPay",
+      "isActive": true,
+      "color": "bg-blue-600"
+    }
+  ]
+}
