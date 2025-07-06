@@ -1,5 +1,5 @@
-const BASE_URL = 'http://192.168.1.7:3000'; 
-// const BASE_URL = 'https://paynet.hrzhkm.xyz';
+// const BASE_URL = 'http://192.168.1.7:3000';
+const BASE_URL = "https://paynet.hrzhkm.xyz";
 export interface User {
   userId: string;
   name: string;
@@ -70,7 +70,7 @@ class ApiService {
     const url = `${this.baseURL}${endpoint}`;
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...options.headers,
       },
       ...options,
@@ -78,15 +78,17 @@ class ApiService {
 
     try {
       const response = await fetch(url, config);
-      
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        );
       }
 
       return await response.json();
     } catch (error) {
-      console.error('API Request Error:', error);
+      console.error("API Request Error:", error);
       throw error;
     }
   }
@@ -97,29 +99,39 @@ class ApiService {
   }
 
   // Scan QR code and initiate payment
-  async scanQR(qrCode: string, payerUserId: string, payerCountry: string): Promise<PaymentSession> {
-    return this.request('/scan-qr', {
-      method: 'POST',
+  async scanQR(
+    qrCode: string,
+    payerUserId: string,
+    payerCountry: string
+  ): Promise<PaymentSession> {
+    return this.request("/scan-qr", {
+      method: "POST",
       body: JSON.stringify({ qrCode, payerUserId, payerCountry }),
     });
   }
 
   // Verify bank data
-  async verifyBank(sessionId: string, bankId: string): Promise<{
+  async verifyBank(
+    sessionId: string,
+    bankId: string
+  ): Promise<{
     sessionId: string;
     verified: boolean;
     status: string;
     transactionHash: string;
     blockNumber: number | null;
   }> {
-    return this.request('/verify-bank', {
-      method: 'POST',
+    return this.request("/verify-bank", {
+      method: "POST",
       body: JSON.stringify({ sessionId, bankId }),
     });
   }
 
   // Process payment
-  async processPayment(sessionId: string, amount: number): Promise<{
+  async processPayment(
+    sessionId: string,
+    amount: number
+  ): Promise<{
     sessionId: string;
     amount: number;
     status: string;
@@ -127,8 +139,8 @@ class ApiService {
     transactionHash: string;
     blockNumber: number;
   }> {
-    return this.request('/process-payment', {
-      method: 'POST',
+    return this.request("/process-payment", {
+      method: "POST",
       body: JSON.stringify({ sessionId, amount }),
     });
   }
@@ -149,7 +161,7 @@ class ApiService {
     network: string;
     isConnected: boolean;
   }> {
-    return this.request('/contract-info');
+    return this.request("/contract-info");
   }
 
   // Debug endpoint - Get session details
@@ -158,4 +170,4 @@ class ApiService {
   }
 }
 
-export default new ApiService(); 
+export default new ApiService();
